@@ -35,7 +35,7 @@ public class UCrop {
     public static final int RESULT_ERROR = 96;
     public static final int MIN_SIZE = 10;
 
-    private static final String EXTRA_PREFIX = BuildConfig.APPLICATION_ID;
+    private static final String EXTRA_PREFIX = BuildConfig.LIBRARY_PACKAGE_NAME;
 
     public static final String EXTRA_INPUT_URI = EXTRA_PREFIX + ".InputUri";
     public static final String EXTRA_OUTPUT_URI = EXTRA_PREFIX + ".OutputUri";
@@ -290,6 +290,7 @@ public class UCrop {
         public static final String EXTRA_UCROP_TITLE_TEXT_TOOLBAR = EXTRA_PREFIX + ".UcropToolbarTitleText";
         public static final String EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE = EXTRA_PREFIX + ".UcropToolbarCancelDrawable";
         public static final String EXTRA_UCROP_WIDGET_CROP_DRAWABLE = EXTRA_PREFIX + ".UcropToolbarCropDrawable";
+        public static final String EXTRA_UCROP_WIDGET_REVERT_DRAWABLE = EXTRA_PREFIX + ".UcropToolbarRevertDrawable";
 
         public static final String EXTRA_UCROP_LOGO_COLOR = EXTRA_PREFIX + ".UcropLogoColor";
 

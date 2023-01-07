@@ -95,6 +95,8 @@ public class UCropActivity extends AppCompatActivity {
     @DrawableRes
     private int mToolbarCancelDrawable;
     @DrawableRes
+    private int mToolbarRevertDrawable;
+    @DrawableRes
     private int mToolbarCropDrawable;
     private int mLogoColor;
 
@@ -160,6 +162,14 @@ public class UCropActivity extends AppCompatActivity {
             menuItemCrop.setIcon(menuItemCropIcon);
         }
 
+        MenuItem menuItemRevert = menu.findItem(R.id.menu_revert);
+        Drawable menuItemRevertIcon = ContextCompat.getDrawable(this, mToolbarRevertDrawable);
+        if (menuItemRevertIcon != null) {
+            menuItemRevertIcon.mutate();
+            menuItemRevertIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
+            menuItemRevert.setIcon(menuItemRevertIcon);
+        }
+
         return true;
     }
 
@@ -174,6 +184,9 @@ public class UCropActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_crop) {
             cropAndSaveImage();
+            return true;
+        } else if (item.getItemId() == R.id.menu_revert) {
+            revertCrop();
             return true;
         } else if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -293,6 +306,7 @@ public class UCropActivity extends AppCompatActivity {
         mToolbarWidgetColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_COLOR_TOOLBAR, ContextCompat.getColor(this, R.color.ucrop_color_toolbar_widget));
         mToolbarCancelDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE, R.drawable.ucrop_ic_cross);
         mToolbarCropDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CROP_DRAWABLE, R.drawable.ucrop_ic_done);
+        mToolbarRevertDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_REVERT_DRAWABLE, R.drawable.ucrop_ic_revert);
         mToolbarTitle = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_TITLE_TEXT_TOOLBAR);
         mToolbarTitle = mToolbarTitle != null ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
@@ -697,4 +711,11 @@ public class UCropActivity extends AppCompatActivity {
         setResult(UCrop.RESULT_ERROR, new Intent().putExtra(UCrop.EXTRA_ERROR, throwable));
     }
 
+    protected void revertCrop() {
+        mGestureCropImageView.setTargetAspectRatio(0f);
+        mGestureCropImageView.setImageToWrapCropBounds(false);
+        mGestureCropImageView.zoomInImage(mGestureCropImageView.getMinScale());
+        mGestureCropImageView.postRotate(-mGestureCropImageView.getCurrentAngle());
+        mGestureCropImageView.setImageToWrapCropBounds();
+    }
 }

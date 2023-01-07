@@ -18,6 +18,8 @@
     <color name="ucrop_color_inactive_controls_color">@color/ucrop_color_heather</color>
     <color name="ucrop_color_widget_rotate_mid_line">@color/ucrop_color_blaze_orange</color>
     <color name="ucrop_color_widget_rotate_angle">@color/ucrop_color_ebony_clay</color>
+    <color name="ucrop_color_widget_revert_mid_line">@color/ucrop_color_blaze_orange</color>
+    <color name="ucrop_color_widget_revert_angle">@color/ucrop_color_ebony_clay</color>
     <color name="ucrop_color_active_aspect_ratio">@color/ucrop_color_blaze_orange</color>
     <color name="ucrop_color_inactive_aspect_ratio">@color/ucrop_color_ebony_clay</color>
     <color name="ucrop_color_widget_background">@color/ucrop_color_ebony_clay</color>
