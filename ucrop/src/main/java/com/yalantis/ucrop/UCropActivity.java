@@ -717,5 +717,9 @@ public class UCropActivity extends AppCompatActivity {
         mGestureCropImageView.zoomInImage(mGestureCropImageView.getMinScale());
         mGestureCropImageView.postRotate(-mGestureCropImageView.getCurrentAngle());
         mGestureCropImageView.setImageToWrapCropBounds();
+        for (ViewGroup cropAspectRatioView : mCropAspectRatioViews) {
+            cropAspectRatioView.setSelected(false);
+        }
+        mCropAspectRatioViews.get(2).setSelected(true);
     }
 }
